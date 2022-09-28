@@ -23,10 +23,14 @@ public class MvcMemberSaveServlet extends HttpServlet {
 
         Member member = new Member(username, age);
 
+        memberRepository.save(member);
+
         request.setAttribute("member", member); // inner DB
 
-        String viewPath = "/WEB-INF/views/save-result.jsp";
+        /*String viewPath = "/WEB-INF/views/save-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-        dispatcher.forward(request,response);
+        dispatcher.forward(request,response);*/
+
+        MvcMemberViewResolver.viewResolver("save-result", request, response);
     }
 }

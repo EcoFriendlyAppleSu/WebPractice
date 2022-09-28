@@ -20,12 +20,13 @@ public class MvcMemberListServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Member> members = memberRepository.findAll();
-
         // setAttribute first param is key on jsp
         request.setAttribute("members", members);
 
-        String viewPath = "/WEB-INF/views/members.jsp";
+        /*String viewPath = "/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-        dispatcher.forward(request, response);
+        dispatcher.forward(request, response);*/
+
+         MvcMemberViewResolver.viewResolver("members", request, response);
     }
 }
