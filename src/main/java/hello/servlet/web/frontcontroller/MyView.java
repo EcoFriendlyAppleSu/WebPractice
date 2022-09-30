@@ -20,6 +20,9 @@ public class MyView {
         requestDispatcher.forward(request, response);
     }
 
+    /*
+    * request.setAttribute()을 사용해 JSP에 모델을 넘겨 사용합니다.
+    * */
     public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         modelToRequestAttribute(model, request);
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
