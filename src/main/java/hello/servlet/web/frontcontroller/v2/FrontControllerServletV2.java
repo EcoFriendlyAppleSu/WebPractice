@@ -32,11 +32,15 @@ public class FrontControllerServletV2 extends HttpServlet {
         String requestURI = request.getRequestURI();
         ControllerV2 controller = controllerMap.get(requestURI);
 
-        MyView process = controller.process(request, response);
-        process.render(request, response);
+        if (isControllerNull(controller)) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        MyView view = controller.process(request, response);
+        view.render(request, response);
     }
 
-    private boolean isControllerNull(ControllerV1 controller) {
+    private boolean isControllerNull(ControllerV2 controller) {
         return controller == null;
     }
 }
